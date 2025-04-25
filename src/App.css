@@ -1,0 +1,54 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  height: 5em;
+  padding: 1em;
+  transition: transform 0.3s ease-in-out, filter 300ms;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 1.5em #646cffaa);
+}
+
+/* Card Styling */
+.card {
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffffff, #e0e0e0);
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+/* Button Styling */
+button {
+  border-radius: 8px;
+  border: none;
+  padding: 0.8em 1.5em;
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(135deg, #646cff, #535bf2);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 15px rgba(100, 108, 255, 0.5);
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+  border: 2px solid #213547;
+}
