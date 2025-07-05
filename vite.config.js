@@ -4,6 +4,9 @@ import NodeGlobalsPolyfillPlugin from "@esbuild-plugins/node-globals-polyfill";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 3000,
+  },
   define: {
     global: "window",
   },
