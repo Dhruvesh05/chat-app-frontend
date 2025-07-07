@@ -16,7 +16,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/rooms")
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",            // for local testing
+    "https://chat-app-murex-zeta-87.vercel.app/" // replace with your actual Vercel domain
+})
+
 public class RoomController {
 
     private RoomRepository roomRepository;
