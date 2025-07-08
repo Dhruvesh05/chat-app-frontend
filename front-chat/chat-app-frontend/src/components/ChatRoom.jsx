@@ -6,7 +6,8 @@ import SockJS from "sockjs-client";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const baseURL = "http://localhost:8080"; // Backend URL
+const baseURL = "https://chat-app-backend-qmgt.onrender.com"; // Render-deployed Backend URL
+
 
 const ChatRoom = () => {
   const { roomId, username, connected, setConnected } = useChatContext();
