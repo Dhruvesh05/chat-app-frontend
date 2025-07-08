@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const baseURL = "http://localhost:8080"; // Backend URL
+const baseURL = "https://chat-app-backend-qmgt.onrender.com"; // Render-deployed Backend URL
 
 const Home = () => {
   const [room, setRoom] = useState("");
