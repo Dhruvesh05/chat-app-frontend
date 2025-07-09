@@ -5,7 +5,7 @@ fetch("https://chat-app-backend-qmgt.onrender.com/api/some-endpoint")
 
 
 import axios from "axios";
-export const baseURL = "https://chat-app-backend-qmgt.onrender.com/api/some-endpoint";
+export const baseURL = "https://chat-app-backend-qmgt.onrender.com";
 export const httpClient = axios.create({
   baseURL: baseURL,
 });
