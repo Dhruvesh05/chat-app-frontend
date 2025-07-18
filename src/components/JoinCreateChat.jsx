@@ -66,7 +66,7 @@ const JoinCreateChat = () => {
     <div className="join-create-container">
       <div className="join-create-card">
         <img src={chatIcon} className="chat-logo" alt="Chat Icon" />
-        <h1 className="join-create-title">Join Room / Create Room</h1>
+        <h1 className="join-create-title">Welcome to Chat Room</h1>
 
         {/* Name Input */}
         <div className="input-group">
