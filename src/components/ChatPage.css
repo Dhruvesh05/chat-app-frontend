@@ -10,7 +10,8 @@
     height: 100vh;
     background: #1e1e2f;
     color: #fff;
-    font-family: DM Sans;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 400;
     align-items: center;
     width: 100vw; /* Full screen width */
     margin: 0;
