@@ -1,18 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import ChatRoom from "./components/ChatRoom";
-import { ChatProvider } from "./context/ChatContext";
+import React, { useEffect } from "react";
+import { connectSocket, disconnectSocket } from "./services/socket";
 
+function App() {
+  useEffect(() => {
+    connectSocket(); // connect when component mounts
 
-const App = () => (
-  <ChatProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/chat" element={<ChatRoom />} />
-      </Routes>
-    </BrowserRouter>
-  </ChatProvider>
-);
+    return () => {
+      disconnectSocket(); // cleanup on unmount
+    };
+  }, []);
+
+  return (
+    <div>
+      <h1>🧠 C3ube Chat App</h1>
+      <p>Check the console for WebSocket activity.</p>
+    </div>
+  );
+}
 
 export default App;
