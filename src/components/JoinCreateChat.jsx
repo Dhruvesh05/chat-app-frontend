@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import chatIcon from "../assets/chat.png";
+import chatIcon from "../assets/image.png";
 import toast from "react-hot-toast";
 import { createRoomApi, joinChatApi } from "../services/RoomService";
 import useChatContext from "../context/ChatContext";
@@ -63,10 +63,11 @@ const JoinCreateChat = () => {
   };
 
   return (
+    <body>
     <div className="join-create-container">
       <div className="join-create-card">
         <img src={chatIcon} className="chat-logo" alt="Chat Icon" />
-        <h1 className="join-create-title">Join Room / Create Room</h1>
+        <h1 className="join-create-title">Welcome to Chat Room</h1>
 
         {/* Name Input */}
         <div className="input-group">
@@ -103,6 +104,7 @@ const JoinCreateChat = () => {
         </div>
       </div>
     </div>
+    </body>
   );
 };
 
