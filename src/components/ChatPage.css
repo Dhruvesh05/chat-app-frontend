@@ -28,7 +28,8 @@ body, html {
 
 /* Chat container */
 .chat-container {
-  margin-top: 150px;
+  margin-top: 250px;
+  padding: 100px;
   display: flex;
   flex-direction: column;
   height: 100%;
