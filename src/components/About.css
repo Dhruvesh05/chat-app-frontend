@@ -1,0 +1,294 @@
+/* ...existing code... */
+
+/* --- Feature Cards Section --- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin: 3rem 0 4rem 0;
+  padding: 0 1rem;
+}
+
+.feature-card {
+  background: #181a24;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(99,102,241,0.10);
+  border: 1.5px solid #23243a;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  text-align: center;
+  transition: box-shadow 0.3s, border 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+  border-color: #6366f1;
+  transform: translateY(-6px) scale(1.03);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  background: #23243a;
+  border-radius: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background 0.3s;
+}
+
+.feature-card:hover .feature-icon {
+  background: #6366f1;
+}
+
+.feature-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+.feature-card p {
+  color: #b0b3c6;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Responsive SVGs */
+.feature-icon svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: #6366f1;
+  transition: color 0.3s;
+}
+
+.feature-card:hover .feature-icon svg {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0 2.5rem 0;
+  }
+  .feature-card {
+    padding: 2rem 1rem 1.5rem 1rem;
+  }
+  .feature-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .feature-card h3 {
+    font-size: 1.1rem;
+  }
+  .feature-card p {
+    font-size: 0.95rem;
+  }
+}
+
+/* --- Mission Section --- */
+.mission-section {
+  background: #15161e;
+  border-radius: 2rem;
+  margin: 0 1rem 3rem 1rem;
+  padding: 3rem 2rem;
+  box-shadow: 0 2px 24px rgba(99,102,241,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mission-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.mission-content {
+  flex: 2;
+  min-width: 0;
+}
+
+.mission-label {
+  font-size: 0.95rem;
+  color: #6366f1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+
+.mission-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+}
+
+.mission-text p {
+  color: #b0b3c6;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
+
+.stats-grid {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  color: #a5b4fc;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.mission-visual {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mockup-container {
+  background: #181a24;
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 16px rgba(99,102,241,0.10);
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mockup-line {
+  height: 12px;
+  width: 80%;
+  background: #23243a;
+  border-radius: 6px;
+  margin-bottom: 0.7rem;
+  animation: mockupPulse 1.5s infinite alternate;
+}
+
+.mockup-line.delay-1 {
+  animation-delay: 0.3s;
+}
+.mockup-line.delay-2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes mockupPulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.mockup-highlight {
+  background: #6366f1;
+  border-radius: 1rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1.2rem;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.18);
+}
+
+.mockup-highlight svg {
+  width: 2rem;
+  height: 2rem;
+  color: #fff;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(18px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.glow-top {
+  top: -30px;
+  right: -30px;
+  width: 60px;
+  height: 60px;
+  background: #6366f1;
+}
+
+.glow-bottom {
+  bottom: -40px;
+  left: -40px;
+  width: 80px;
+  height: 80px;
+  background: #818cf8;
+}
+
+@media (max-width: 900px) {
+  .mission-section {
+    padding: 2rem 1rem;
+    margin: 0 0.5rem 2rem 0.5rem;
+  }
+  .mission-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .mission-title {
+    font-size: 1.3rem;
+  }
+  .mockup-container {
+    width: 140px;
+    height: 140px;
+    padding: 1rem;
+  }
+  .mockup-highlight {
+    width: 36px;
+    height: 36px;
+  }
+  .mockup-highlight svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .glow-top, .glow-bottom {
+    width: 30px;
+    height: 30px;
+  }
+  .stats-grid {
+    gap: 1.2rem;
+  }
+  .stat-number {
+    font-size: 1.1rem;
+  }
+}
+
+/* ...existing code... */

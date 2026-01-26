@@ -1,11 +1,15 @@
-import JoinCreateChat from "./components/JoinCreateChat";
+import React from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div>
-      <JoinCreateChat />
-    </div>
-  );
-}
+// AppRoutes handles all navigation and page rendering
+import AppRoutes from "./config/Routes.jsx";
+
+const App = () => {
+	return (
+		<div className="app-root">
+			<AppRoutes />
+		</div>
+	);
+};
 
 export default App;

@@ -1,21 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
+
 :root {
-  font-family: "Poppins", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "DM Sans", "Poppins", Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
-
-  color: #213547;
-  background-color: #f4f4f4;
+  color: #f4f4f4;
+  background-color: #101014;
 }
 
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: radial-gradient(circle, #e0e0e0, #cfcfcf);
+  min-width: 100vw;
+  background: #101014;
+  color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 
 /* Typography */
