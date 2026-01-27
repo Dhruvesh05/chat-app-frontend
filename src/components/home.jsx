@@ -16,17 +16,15 @@ const Home = () => {
             {/* Logo */}
             <div className="nav-logo">
               <div className="logo-icon">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
+                <img src="/ProChat.svg" alt="ProChat Logo" style={{ width: 32, height: 32, display: 'block' }} />
               </div>
               <span className="logo-text">ProChat</span>
             </div>
 
             {/* Desktop Navigation */}
             <ul className="nav-links">
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/join-create">Join/Create</Link></li>
+              <li><a href="#about-section">About</a></li>
+              <li><a href="#joincreate-section">Join/Create</a></li>
               <li><Link to="/help" className="nav-cta">Help</Link></li>
             </ul>
 
@@ -49,8 +47,8 @@ const Home = () => {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="mobile-menu">
-            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
-            <Link to="/join-create" onClick={() => setMobileMenuOpen(false)}>Join/Create</Link>
+            <a href="#about-section" onClick={() => setMobileMenuOpen(false)}>About</a>
+            <a href="#joincreate-section" onClick={() => setMobileMenuOpen(false)}>Join/Create</a>
             <Link to="/help" onClick={() => setMobileMenuOpen(false)} className="mobile-cta">Help</Link>
           </div>
         )}
@@ -70,17 +68,21 @@ const Home = () => {
             Experience conversations without the clutter.
           </p>
           <div className="hero-actions">
-            <Link to="/join-create" className="btn-primary">Start Chatting</Link>
-            <Link to="/about" className="btn-secondary">Learn More</Link>
+            <a href="#joincreate-section" className="btn-primary">Start Chatting</a>
+            <a href="#about-section" className="btn-secondary">Learn More</a>
           </div>
         </div>
       </section>
 
       {/* About Component */}
-      <About />
+      <div id="about-section">
+        <About />
+      </div>
 
       {/* Join/Create Component */}
-      <JoinCreateChat />
+      <div id="joincreate-section">
+        <JoinCreateChat />
+      </div>
 
       {/* Footer */}
       <footer className="footer-modern">
