@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MdAttachFile, MdSend, MdEmojiEmotions } from "react-icons/md";
+import { MdSend, MdEmojiEmotions, MdMoreVert, MdArrowBack } from "react-icons/md";
 import EmojiPicker from "emoji-picker-react";
 import useChatContext from "../context/ChatContext";
 import { useNavigate } from "react-router";
@@ -8,8 +8,7 @@ import { Stomp } from "@stomp/stompjs";
 import toast from "react-hot-toast";
 import { baseURL } from "../config/AxiosHelper";
 import { getMessagess } from "../services/RoomService";
-import { timeAgo } from "../config/helper";
-import "./ChatPage.css"; // Import the new CSS file
+import "./ChatPage.css";
 
 const ChatPage = () => {
   const {
@@ -23,10 +22,13 @@ const ChatPage = () => {
 
   const navigate = useNavigate();
   const chatBoxRef = useRef(null);
+  const inputRef = useRef(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [stompClient, setStompClient] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
 
   // Redirect if not connected
   useEffect(() => {
@@ -62,7 +64,7 @@ const ChatPage = () => {
 
       client.connect({}, () => {
         setStompClient(client);
-        toast.success("Connected");
+        toast.success("Connected to chat");
 
         client.subscribe(`/topic/room/${roomId}`, (message) => {
           const newMessage = JSON.parse(message.body);
@@ -109,6 +111,8 @@ const ChatPage = () => {
 
       stompClient.send(`/app/sendMessage/${roomId}`, {}, JSON.stringify(message));
       setInput("");
+      setShowEmojiPicker(false);
+      inputRef.current?.focus();
     }
   };
 
@@ -126,59 +130,146 @@ const ChatPage = () => {
   // Add emoji to input
   const handleEmojiClick = (emojiObject) => {
     setInput((prevInput) => prevInput + emojiObject.emoji);
+    inputRef.current?.focus();
   };
 
-  return (
-    <div className="chat-container">
-      <header className="chat-header">
-        <h1 className="room-info">Room :  {roomId}</h1>
-        <h1 className="user-info">User :  {currentUser}</h1>
-        <button onClick={handleLogout} className="leave-button">
-          Leave Room
-        </button>
-      </header>
+  // Group messages by date
+  const groupMessagesByDate = (messages) => {
+    const groups = {};
+    messages.forEach((message) => {
+      const date = new Date(message.timeStamp).toLocaleDateString();
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(message);
+    });
+    return groups;
+  };
 
-      <main ref={chatBoxRef} className="chat-box">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender === currentUser ? "sent" : "received"}`}>
-            <div className="message-content">
-              <p className="message-user">{message.sender}</p>
-              <p className="message-text">{message.content}</p>
-              <p className="message-time">{timeAgo(message.timeStamp)}</p>
+  const groupedMessages = groupMessagesByDate(messages);
+
+  return (
+    <div className="chat-page">
+      {/* Header */}
+      <header className="chat-header">
+        <div className="header-left">
+          <button onClick={handleLogout} className="back-button">
+            <MdArrowBack />
+          </button>
+          <div className="room-avatar">
+            <div className="avatar-circle">
+              {roomId.substring(0, 2).toUpperCase()}
             </div>
           </div>
-        ))}
+          <div className="room-details">
+            <h2 className="room-name">Room {roomId}</h2>
+            <p className="room-status">
+              {messages.length} messages
+            </p>
+          </div>
+        </div>
+        <div className="header-right">
+          <button 
+            className="menu-button"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            <MdMoreVert />
+          </button>
+          {showMenu && (
+            <div className="dropdown-menu">
+              <button onClick={handleLogout}>Leave Room</button>
+              <button onClick={() => setShowMenu(false)}>Close</button>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Chat Messages */}
+      <main ref={chatBoxRef} className="chat-messages">
+        <div className="messages-container">
+          {Object.entries(groupedMessages).map(([date, msgs]) => (
+            <div key={date} className="message-group">
+              <div className="date-divider">
+                <span>{date === new Date().toLocaleDateString() ? "Today" : date}</span>
+              </div>
+              {msgs.map((message, index) => {
+                const isSent = message.sender === currentUser;
+                const showAvatar = index === 0 || msgs[index - 1].sender !== message.sender;
+                
+                return (
+                  <div 
+                    key={index} 
+                    className={`message-wrapper ${isSent ? "sent" : "received"}`}
+                  >
+                    {!isSent && showAvatar && (
+                      <div className="message-avatar">
+                        {message.sender.substring(0, 1).toUpperCase()}
+                      </div>
+                    )}
+                    {!isSent && !showAvatar && <div className="message-avatar-spacer" />}
+                    
+                    <div className="message-bubble">
+                      {!isSent && showAvatar && (
+                        <p className="message-sender">{message.sender}</p>
+                      )}
+                      <p className="message-text">{message.content}</p>
+                      <span className="message-time">
+                        {new Date(message.timeStamp).toLocaleTimeString('en-US', {
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </main>
 
       {/* Emoji Picker */}
       {showEmojiPicker && (
-        <div className="emoji-picker">
-          <EmojiPicker onEmojiClick={handleEmojiClick} />
+        <div className="emoji-picker-overlay" onClick={() => setShowEmojiPicker(false)}>
+          <div className="emoji-picker-container" onClick={(e) => e.stopPropagation()}>
+            <EmojiPicker 
+              onEmojiClick={handleEmojiClick}
+              width="100%"
+              height="400px"
+            />
+          </div>
         </div>
       )}
 
-      <div className="message-input-container">
-        {/* Emoji Button */}
-        <button
-          onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-          className="emoji-button"
-        >
-          <MdEmojiEmotions />
-        </button>
+      {/* Input Area */}
+      <div className="chat-input-wrapper">
+        <div className="chat-input-container">
+          <button
+            onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+            className="input-icon-button emoji-button"
+            title="Add emoji"
+          >
+            <MdEmojiEmotions />
+          </button>
 
-        {/* Input Field */}
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder="Type your message..."
-          className="message-input"
-        />
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
+            placeholder="Type a message..."
+            className="message-input"
+          />
 
-        {/* Send Button */}
-        <button onClick={sendMessage} className="send-button">
-          <MdSend />
-        </button>
+          <button 
+            onClick={sendMessage} 
+            className="send-button"
+            disabled={!input.trim()}
+            title="Send message"
+          >
+            <MdSend />
+          </button>
+        </div>
       </div>
     </div>
   );
