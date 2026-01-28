@@ -3,11 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useChatContext from "../context/ChatContext";
 import toast from "react-hot-toast";
-import axios from "axios";
 import "./JoinCreateChat.css";
-
-
-const baseURL = "https://chat-app-backend-qmgt.onrender.com";
+import { createRoomApi, joinChatApi } from "../services/RoomService";
 
 const JoinCreateChat = () => {
   // Shared state for both cards
@@ -24,7 +21,7 @@ const JoinCreateChat = () => {
       return;
     }
     try {
-      await axios.get(`${baseURL}/api/v1/rooms/${joinRoom}`);
+      await joinChatApi(joinRoom);
       setRoomId(joinRoom);
       setCurrentUser(joinName);
       setConnected(true);
@@ -41,7 +38,7 @@ const JoinCreateChat = () => {
       return;
     }
     try {
-      await axios.post(`${baseURL}/api/v1/rooms`, { roomId: createRoom });
+      await createRoomApi({ roomId: createRoom });
       setRoomId(createRoom);
       setCurrentUser(createName);
       setConnected(true);
