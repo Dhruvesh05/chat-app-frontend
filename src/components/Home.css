@@ -3,8 +3,11 @@
 /* Global Styles */
 .home-wrapper {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e1b4b 100%);
+  min-width: 100vw;
+  background: #1e1b4b;
   color: white;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Navigation Styles */
@@ -41,7 +44,7 @@
 .logo-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  /* background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); */
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -86,14 +89,16 @@
 .nav-cta {
   padding: 0.5rem 1.5rem;
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  border-radius: 9999px;
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+  border-radius: 10px;
+  /* box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3); */
   transition: all 0.2s;
 }
 
 .nav-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+  background-color: #6d28d9;
+  color : white;
+  /* box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4); */
 }
 
 .mobile-menu-btn {
@@ -159,9 +164,9 @@
   display: inline-block;
   padding: 0.5rem 1rem;
   background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 9999px;
-  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.5);
+  border-radius: 10px;
+  color: #ffffff;
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 2rem;
@@ -205,11 +210,11 @@
 .btn-primary {
   padding: 1rem 2rem;
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  border-radius: 9999px;
+  border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
   color: white;
-  box-shadow: 0 20px 40px rgba(79, 70, 229, 0.3);
+  /* box-shadow: 0 20px 40px rgba(79, 70, 229, 0.3); */
   transition: all 0.2s;
   width: 100%;
   max-width: 300px;
@@ -218,14 +223,14 @@
 
 .btn-primary:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 25px 50px rgba(79, 70, 229, 0.5);
+  /* box-shadow: 0 25px 50px rgba(79, 70, 229, 0.5); */
 }
 
 .btn-secondary {
   padding: 1rem 2rem;
   background: rgba(30, 41, 59, 0.5);
-  border: 1px solid #334155;
-  border-radius: 9999px;
+  border: 1px solid #4f5967;
+  border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
   color: white;
@@ -236,7 +241,8 @@
 }
 
 .btn-secondary:hover {
-  background: rgba(30, 41, 59, 0.8);
+  background: rgba(255, 255, 255, 0.9);
+  color: #4f46e5;
 }
 
 /* Footer Styles */
@@ -292,14 +298,14 @@
 .tech-pill {
   padding: 0.5rem 0.75rem;
   background: rgba(30, 41, 59, 0.5);
-  border: 1px solid #334155;
-  border-radius: 9999px;
+  border: 1px solid #4a5a71;
+  border-radius: 10px;
   font-size: 0.875rem;
-  color: #94a3b8;
+  color: #ffffff;
 }
 
 .copyright {
-  color: #64748b;
+  color: #ffffff;
   font-size: 0.875rem;
   text-align: center;
   margin: 0;
